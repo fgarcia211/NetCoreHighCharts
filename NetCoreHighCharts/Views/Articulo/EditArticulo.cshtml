@@ -1,0 +1,49 @@
+﻿@model NetCoreHighCharts.Models.ArticuloXML
+
+<h1>EditArticulo</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditArticulo" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" name="idarticulo" value="@Model.IdArticulo" />
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descripcion" class="control-label"></label>
+                <input asp-for="Descripcion" class="form-control" />
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Calorias" class="control-label"></label>
+                <input asp-for="Calorias" class="form-control" />
+                <span asp-validation-for="Calorias" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Proteinas" class="control-label"></label>
+                <input asp-for="Proteinas" class="form-control" />
+                <span asp-validation-for="Proteinas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hidratos" class="control-label"></label>
+                <input asp-for="Hidratos" class="form-control" />
+                <span asp-validation-for="Hidratos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Glucosa" class="control-label"></label>
+                <input asp-for="Glucosa" class="form-control" />
+                <span asp-validation-for="Glucosa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="ListaArticulos">Volver a la lista</a>
+</div>

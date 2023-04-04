@@ -1,0 +1,18 @@
+﻿<h1 align="center" style="background-color: black; width: 80%; margin-left: 10%; padding: 20px;border: 1px solid black;color:white">INFORME DE ALIMENTOS</h1>
+
+<div id="contenidoajax" style="margin:0px 10% 50px 10%; width: 80%; text-align:center; height: 750px;background: linear-gradient(0deg, rgba(47,42,36,1) 0%, rgba(224,201,139,1) 100%);color:white; border: 1px solid black">
+    
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            llamaAjaxAfter(0);
+        });
+
+        function llamaAjaxAfter(posicion){
+            $("#contenidoajax").load("/Articulo/_PaginacionAjax?posicion=" + posicion);
+        }
+    </script>
+}
+

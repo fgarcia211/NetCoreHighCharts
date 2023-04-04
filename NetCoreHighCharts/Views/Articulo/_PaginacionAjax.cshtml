@@ -1,0 +1,95 @@
+﻿@model ArticuloXML
+
+@{
+    int anterior = 0;
+    int siguiente = 0;
+
+    if (ViewData["ANTERIOR"] != null)
+    {
+        anterior = (int)ViewData["ANTERIOR"];
+    }
+
+    if (ViewData["SIGUIENTE"] != null)
+    {
+        siguiente = (int)ViewData["SIGUIENTE"];
+    }
+}
+
+<div id="graficaajax" style="height:500px">
+</div>
+<h1 style="margin: 20px 0px 20px 0px">@Model.Nombre</h1>
+<p>@Model.Descripcion</p>
+<div id="botonera" style="display:flex">
+    <button onclick="llamaAjaxAfter(@anterior)" style="height: 45px;width: 40%; margin: 40px 5% 10px 5%; padding: 10px 0px 10px 0px; background-color: black; border: 1px solid white;color: white">Anterior</button>
+    <button onclick="llamaAjaxAfter(@siguiente)" style="height: 45px;width: 40%; margin: 40px 5% 10px 5%; padding: 10px 0px 10px 0px; background-color: black; border: 1px solid white;color: white">Siguiente</button>
+</div>
+
+<script>
+    var datos = @Json.Serialize(Model);
+    var labeldata = []
+
+    console.log(datos);
+
+    if (datos.glucosa != 0){
+        labeldata.push(["Glucosa", datos.glucosa]);
+    }
+
+    if (datos.hidratos != 0) {
+        labeldata.push(["Hidratos", datos.hidratos]);
+    }
+
+    if (datos.proteinas != 0){
+        labeldata.push(["Proteinas", datos.proteinas]);
+    }
+
+    if (datos.calorias != 0) {
+        labeldata.push(["Calorias", datos.calorias]);
+    }
+
+    Highcharts.chart("graficaajax", {
+        chart: {
+            backgroundColor: "transparent",
+            plotBorderWidth: 0,
+            plotShadow: false,
+        },
+        title: {
+            useHTML: true,
+            text: "",
+            y: 60,
+            style: {
+                fontWeight: 'bold',
+                color: 'white',
+                fontSize: '17px',
+                'background-color': '#000000',
+                'text-align': "center"
+            }
+        },
+        plotOptions: {
+            pie: {
+                dataLabels: {
+                    enabled: true,
+                    distance: -50,
+                    style: {
+                        fontWeight: 'bold',
+                        color: 'white',
+                        fontSize: '16px'
+                    }
+                },
+                startAngle: -90,
+                endAngle: 90,
+                center: ['50%', '80%'],
+                size: '110%'
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Total',
+            innerSize: '40%',
+            data: labeldata
+        }],
+    });
+
+    $("text.highcharts-credits").hide();
+</script>
+
+
